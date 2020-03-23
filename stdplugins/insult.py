@@ -18,14 +18,13 @@ async def _(event):
     if event.fwd_from:
         return
     args = event.pattern_match.group(1)
-    adjectives_start = ["salty", "fat", "fucking", "shitty",
-                        "stupid", "retarded", "self conscious", "tiny"]
+    adjectives_start = ["salty", "fat" , "shitty",
+                        "stupid", "small nose", "self conscious", "tiny"]
     adjectives_mid = ["little", "vitamin D deficient",
                       "idiotic", "incredibly stupid"]
-    nouns = ["cunt", "pig", "pedophile", "beta male", "bottom", "retard", "ass licker", "cunt nugget",
-             "PENIS", "dickhead", "flute", "idiot", "motherfucker", "loner", "creep"]
-    starts = ["You're a", "You", "Fuck off you", "Actually die you", "Listen up you",
-              "What the fuck is wrong with you, you"]
+    nouns = ["weak", "bottom", "retard", "irritating", "flute", "idiot", "mad", "loner", "creep"]
+    starts = ["You're a", "You", "Shut up you", "Actually get lost you", "Listen up you",
+              "What the hell is wrong with you, you"]
     ends = ["!!!!", "!", ""]
     log_insults = ""
     if args:
