@@ -70,7 +70,7 @@ async def _(event):
             sticker.seek(0)
             uploaded_sticker = await borg.upload_file(sticker, file_name=file_ext_ns_ion)
 
-    await event.edit("```Using black magic to kang this sticker...```")
+    await event.edit("```lemme kang this sticker, hope u don't mind...```")
 
     async with borg.conversation("@Stickers") as bot_conv:
         now = datetime.datetime.now()
