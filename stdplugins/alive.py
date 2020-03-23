@@ -23,7 +23,7 @@ async def _(event):
     uname = platform.uname()
     memory = psutil.virtual_memory()
     specs = f"```System: {uname.system}```\n```Release: {uname.release}```\n```Version: {uname.version}```\n```Processor: {uname.processor}```\n```Memory [RAM]: {get_size(memory.total)}```"
-    help_string = f"**Your bot is running.**\n\n**General Info:**\n```Build: {BUILD}```{str(user)}\n```By: @YouAFuckinHoe```\n\n**System Specifications:**\n{specs}\n```Python {sys.version}```\n```Telethon {__version__}```"
+    help_string = f"**Your bot is running.**\n\n**General Info:**\n```Build: {BUILD}```{str(user)}\n```By: @Rishabhjain_45 Specifications:**\n{specs}\n```Python {sys.version}```\n```Telethon {__version__}```"
     tgbotusername = Config.TG_BOT_USER_NAME_BF_HER  # pylint:disable=E0602
     if tgbotusername is not None:
         results = await borg.inline_query(  # pylint:disable=E0602
