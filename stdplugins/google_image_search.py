@@ -34,10 +34,12 @@ async def _(event):
     await event.edit("Complete Sending file for "+input_str)
     for each_file in file_path:
         os.remove(each_file)
+
     try:
         os.rmdir(str(Config.TMP_DOWNLOAD_DIRECTORY+input_str).replace(" ","_"))
     except :
         logger.error("Can not delete images directory")
+
     await asyncio.sleep(5)
     await event.delete()
     
@@ -126,7 +128,7 @@ def search_and_download(search_term:str,target_path=Config.TMP_DOWNLOAD_DIRECTOR
     files_paths=[]
     if not os.path.exists(target_folder):
         os.makedirs(target_folder)
-    
+
     with webdriver.Chrome() as wd:
         res = fetch_image_urls(search_term, number_images, wd=wd, sleep_between_interactions=0.5)
     for elem in res:
