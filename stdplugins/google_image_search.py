@@ -29,8 +29,10 @@ async def _(event):
     await event.edit("Complete Sending file for "+input_str)
     for each_file in file_path:
         os.remove(each_file)
-    os.rmdir(Config.TMP_DOWNLOAD_DIRECTORY+input_str)
-
+    try:
+        os.rmdir(str(Config.TMP_DOWNLOAD_DIRECTORY+input_str).replace(" ","_"))
+    except :
+        logger.error("Can not delete images directory")
     await asyncio.sleep(5)
     await event.delete()
     
