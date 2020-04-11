@@ -18,7 +18,12 @@ async def _(event):
         return
     input_str = event.pattern_match.group(1)
     await event.edit("searching image of "+input_str)
-    file_path=search_and_download(input_str)
+    try:
+        file_path=search_and_download(input_str)
+    except  Exception as e:
+        logger.warn(f"error {e}")
+        os.system("./install_chromedriver.sh")
+        await  event.edit("installing particular driver ..run again")
     await event.edit("Sending File now...")
     await borg.send_file(
         event.chat_id,
