@@ -9,7 +9,15 @@ you will get **APP ID**  and **APP HASH** copy these two value at safe place (yo
 
 step 2.1: clone this repo and pip install telethon first...
 
-step2.2 run python session-strings.py
+> git clone https://github.com/authoritydmc/BEASTBOT-REBORN.git 
+
+
+using python's pip install telethon.. 
+
+> pip install telethon
+
+step2.2 run 
+> python session_strings.py
 
 step2.3 enter your mobile number with country code for eg +919876543210
 
@@ -17,13 +25,13 @@ step 2.4 enter the code you received
 
 step 2.5 you will get a string as a response starting with something like 1Bqvt......
 
-step 2.5 copy this String somwhere safe .this is **HU_STRING_SESSION** value
+step 2.5 copy this String somwhere safe .this is your **HU_STRING_SESSION** value
 
-step3: Create an account on Heroku.com
+step3: Create an account on [Heroku.com](https://heroku.com)
 
 step4: click on deploy button below
 
-
+step5 : Fill in all the Three required Value you copied and app name(anything) ..and finally click on deploy.
 
 ## Installing
 
