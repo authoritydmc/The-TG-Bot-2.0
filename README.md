@@ -53,13 +53,13 @@ using python's pip install telethon..
 ![heroku setting page ](https://i.ibb.co/B2RPWWn/heroku-setting.jpg)
 ![heroku setting page](https://i.ibb.co/YPFkpzR/heroku-settting2.jpg)
 
-## Installing
+#### Finished .. your bot must be up and running by now..
 
-#### The Easy Way
+## NOT FOR DEPLOYERS... below information only for Developers and Collaborators
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+### Installing
 
-#### The Legacy Way
+
 Simply clone the repository and run the main file:
 ```sh
 git clone https://github.com/uniborg/uniborg.git
