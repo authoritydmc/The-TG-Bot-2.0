@@ -3,37 +3,20 @@ Syntax: .update
 \nAll Credits goes to © @Three_Cube_TeKnoways
 \nFor this awasome plugin.\nPorted from PpaperPlane Extended"""
 
-from os import remove
-from os import execl
+import os
 import sys
-
-# from git import Repo
-# from git.exc import GitCommandError
-# from git.exc import InvalidGitRepositoryError
-# from git.exc import NoSuchPathError
-
-# from .. import bot
-# from userbot.utils import register
-
 import git
 import asyncio
 import random
 import re
 import time
-
 from collections import deque
-
 import requests
-
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon import events
-
-from userbot.utils import admin_cmd
-
-
+from uniborg.util import admin_cmd
 from contextlib import suppress
-import os
 import sys
 import asyncio
 
@@ -44,8 +27,8 @@ IS_SELECTED_DIFFERENT_BRANCH = (
     "in this case, Updater is unable to identify the branch to be updated."
     "please check out to an official branch, and re-start the updater."
 )
-OFFICIAL_UPSTREAM_REPO = "https://github.com/Dark-Princ3/X-tra-Telegram"
-BOT_IS_UP_TO_DATE = "`The userbot is up-to-date.\nThank you for Using this Service.`"
+OFFICIAL_UPSTREAM_REPO = "https://github.com/authoritydmc/BEASTBOT-REBORN"
+BOT_IS_UP_TO_DATE = "`The BeastBot up-to-date.\nThank you for Using this Service.`"
 NEW_BOT_UP_DATE_FOUND = (
     "new update found for {branch_name}\n"
     "changelog: \n\n{changelog}\n"
@@ -64,7 +47,7 @@ RESTARTING_APP = "re-starting heroku application"
 # -- Constants End -- #
 
 
-@borg.on(admin_cmd("update ?(.*)", outgoing=True))
+@borg.on(admin_cmd("update ?(.*)"))
 async def updater(message):
     try:
         repo = git.Repo()
