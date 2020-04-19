@@ -57,7 +57,6 @@ async def run(event,caller="None"):
 
         cmdlist.append("unzip -o chromedriver_linux64.zip -d stdplugins/")
 
-        cmdlist.append("unzip -o chromedriver_linux64.zip ")
 
 
         cmdlist.append("rm chrome*.zip*")
@@ -66,7 +65,7 @@ async def run(event,caller="None"):
         for cmd in cmdlist:
             print("Executing ",cmd)
             await event.edit("Executing "+f"`{cmd}`")
-            await asyncio.sleep(1)
+            # await asyncio.sleep(1)
             os.system(cmd)
         return "Successfully Done"
     except Exception as e:
