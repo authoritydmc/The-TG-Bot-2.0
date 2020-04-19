@@ -134,17 +134,8 @@ def search_and_download(search_term:str,target_path=Config.TMP_DOWNLOAD_DIRECTOR
     files_paths=[]
     if not os.path.exists(target_folder):
         os.makedirs(target_folder)
-    res=[]
-    try:
-        logger.info("using Firefox")
-        print("using firefox now")
-        with webdriver.Firefox() as wd:  
-            res = fetch_image_urls(search_term, number_images, wd=wd, sleep_between_interactions=0.5)
-    except Exception as e:
-        logger.info("Firefox exception.\nUsing Chrome now"+str(e))
-        print("firefox exception")
-        with webdriver.Chrome() as wd:
-            res = fetch_image_urls(search_term, number_images, wd=wd, sleep_between_interactions=0.5)
+    with webdriver.Chrome() as wd:
+        res = fetch_image_urls(search_term, number_images, wd=wd, sleep_between_interactions=0.5)
     for elem in res:
         paths=persist_image(target_folder,elem)
         if paths!=None:
