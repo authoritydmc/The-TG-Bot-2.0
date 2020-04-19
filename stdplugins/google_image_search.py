@@ -25,6 +25,7 @@ async def _(event):
         file_path=await search_and_download(event,input_str)
     except  Exception as e:
         logger.warn(f"error {e}")
+
         await event.edit("error "+str(e))
         await asyncio.sleep(3)
         await event.edit("Installing particular driver")
@@ -33,6 +34,7 @@ async def _(event):
             await event.edit("Failed to Install driver... meh :(")
         else:
             await event.edit("Installed ...Run Again..")
+
 
         return
     await event.edit("Sending File now...")
@@ -161,6 +163,7 @@ async def search_and_download(event,search_term:str,target_path=Config.TMP_DOWNL
     await event.edit("Fetching images for "+search_term)
     res = fetch_image_urls(search_term, number_images, wd=wd, sleep_between_interactions=0.5)
     await event.edit("Fetched Images for "+search_term)
+
     for elem in res:
         paths=persist_image(target_folder,elem)
         if paths!=None:
