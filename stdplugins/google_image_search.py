@@ -24,7 +24,7 @@ async def _(event):
     except  Exception as e:
         logger.warn(f"error {e}")
         os.system("./stdplugins/install_chromedriver.sh")
-        await  event.edit("error "+str(e))
+        await  event.edit("error "+str(e)+"installing partiular driver request again ..")
 
         return
     await event.edit("Sending File now...")
