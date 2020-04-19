@@ -140,12 +140,31 @@ def persist_image(folder_path:str,url:str):
 async def search_and_download(event,search_term:str,target_path=Config.TMP_DOWNLOAD_DIRECTORY,number_images=Config.GOOGLE_IMAGES_LIMIT):
     target_folder = os.path.join(target_path,'_'.join(search_term.lower().split(' ')))
     files_paths=[]
+    chromedriverPath=''
+    
     if not os.path.exists(target_folder):
         os.makedirs(target_folder)
-    with webdriver.Chrome('chromedriver') as wd:
-        res = fetch_image_urls(search_term, number_images, wd=wd, sleep_between_interactions=0.5)
+    wd=None
+    try:
+       wd= webdriver.Chrome()
+       #find at global path
+    except:
+        try:
+            wd= webdriver.Chrome('stdplugins/chromedriver')
+            #find in custom path now
+        except:
+            res=await getdriver.run(event,"search and download ...")
+            if "Done" in res:
+                await event.edit("Driver successfully loaded ...running webdriver with custom path")
+        wd= webdriver.Chrome('stdplugins/chromedriver')
+   
+    await event.edit("Fetching images for "+search_term)
+    res = fetch_image_urls(search_term, number_images, wd=wd, sleep_between_interactions=0.5)
+    await event.edit("Fetched Images for "+search_term)
     for elem in res:
         paths=persist_image(target_folder,elem)
         if paths!=None:
             files_paths.append(paths)
+
+    wd.close()
     return files_paths
