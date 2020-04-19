@@ -8,7 +8,7 @@ import io
 import requests
 from PIL import Image
 import hashlib
-import get
+from stdplugins import getdriver
 
 MODULE_LIST.append("img (image search query)")
 
@@ -22,12 +22,17 @@ async def _(event):
     input_str = event.pattern_match.group(1)
     await event.edit("searching image of "+input_str)
     try:
-        file_path=search_and_download(input_str)
+        file_path=await search_and_download(event,input_str)
     except  Exception as e:
         logger.warn(f"error {e}")
-        event.edit("Installing particular driver")
-        await get_chromedriverLink.run(event)
-        event.edit("Done ..")
+        await event.edit("error "+str(e))
+        await asyncio.sleep(3)
+        await event.edit("Installing particular driver")
+        res=await getdriver.run(event,"exception @ main")
+        if "Error" in res:
+            await event.edit("Failed to Install driver... meh :(")
+        else:
+            await event.edit("Installed ...Run Again..")
 
         return
     await event.edit("Sending File now...")
@@ -132,12 +137,12 @@ def persist_image(folder_path:str,url:str):
     return None
 
     
-def search_and_download(search_term:str,target_path=Config.TMP_DOWNLOAD_DIRECTORY,number_images=5):
+async def search_and_download(event,search_term:str,target_path=Config.TMP_DOWNLOAD_DIRECTORY,number_images=Config.GOOGLE_IMAGES_LIMIT):
     target_folder = os.path.join(target_path,'_'.join(search_term.lower().split(' ')))
     files_paths=[]
     if not os.path.exists(target_folder):
         os.makedirs(target_folder)
-    with webdriver.Chrome() as wd:
+    with webdriver.Chrome('chromedriver') as wd:
         res = fetch_image_urls(search_term, number_images, wd=wd, sleep_between_interactions=0.5)
     for elem in res:
         paths=persist_image(target_folder,elem)
