@@ -4,6 +4,9 @@ from difflib import SequenceMatcher
 import sys
 import subprocess
 import os
+import asyncio
+from uniborg.util import admin_cmd
+
 url="https://chromedriver.chromium.org/downloads"
 pat=r"https://chromedriver.storage.googleapis.com/index.html[\w?=.]+"
 
@@ -22,8 +25,9 @@ def getResponse(version_needed):
             bestlink=link
     return bestlink
 
-def run():
+async def run(event):
     try:
+        event.edit("Running from get chrome py")
         zz=subprocess.run(['google-chrome', '--version'],stdout=subprocess.PIPE)
         version=re.findall(r'[\d.]+',str(zz.stdout))
         print("Current Chrome Version->",version)

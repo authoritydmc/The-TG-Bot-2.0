@@ -8,6 +8,8 @@ import io
 import requests
 from PIL import Image
 import hashlib
+import get
+
 MODULE_LIST.append("img (image search query)")
 
 def progress(current, total):
@@ -23,8 +25,9 @@ async def _(event):
         file_path=search_and_download(input_str)
     except  Exception as e:
         logger.warn(f"error {e}")
-        os.system("./stdplugins/install_chromedriver.sh")
-        await  event.edit("error "+str(e)+"installing partiular driver request again ..")
+        event.edit("Installing particular driver")
+        await get_chromedriverLink.run(event)
+        event.edit("Done ..")
 
         return
     await event.edit("Sending File now...")
