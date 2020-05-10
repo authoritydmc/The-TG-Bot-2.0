@@ -37,9 +37,9 @@ async def _(event):
                 github_link=Config.GITHUB_LINK
         except  Exception:
             pass
-        social_str=f"\nMy Social Accounts\n{hin_str}\
+        social_str=f"\n**My Social Accounts**\n\
         \nGithub: [branch here]({github_link})\n \
-        \nFacebook: [click here]({fb_link})\nInstagram: [Go here]({ig_link})\n"
+        \nFacebook: [click here]({fb_link})\n\nInstagram: [Go here]({ig_link})\n"
         await event.edit(social_str)
     elif input_str == "guide":
         await event.edit(f"[ Follow this Guide ](https://authoritydmc.github.io/BEASTBOT-REBORN/)")
