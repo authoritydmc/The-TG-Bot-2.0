@@ -140,6 +140,16 @@ class Config(object):
 
 
     HEROKU_API_KEY=os.environ.get("HEROKU_API_KEY",None)
+
+
+    DROPBOX_TOKEN = os.environ.get("DROPBOX_TOKEN", None)
+    #
+    G_DRIVE_ACCOUNT = os.environ.get("G_DRIVE_ACCOUNT", None)
+    #
+    IPABOX_FOLDER = os.environ.get("IPABOX_FOLDER", None)
+    
+    GROUP_REG_SED_EX_BOT_S = os.environ.get(
+        "GROUP_REG_SED_EX_BOT_S", r"(regex|moku|BananaButler_|rgx|l4mR)bot")
 class Production(Config):
     LOGGER = False
 

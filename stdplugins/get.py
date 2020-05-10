@@ -24,6 +24,23 @@ async def _(event):
         await event.edit(f"**Click** [here]({DEPLOYLINK}) **to goto the heroku deploy page.**")
     elif input_str == "packs":
         await event.edit(f"**Found the following sticker pack data:**\n{PACKS}")
+    elif input_str=="social":
+        ig_link="**set `IG_LINK` and `SHOW_SOCIAL` as `True` in Heroku config**\n"
+        github_link="** set `GITHUB_LINK` and `SHOW_SOCIAL` as `True` in Heroku config **"
+        fb_link="** set `FB_LINK`  and `SHOW_SOCIAL` as `True` in Heroku config **"
+        try:
+            if Config.IG_LINK is not None:
+                ig_link=Config.IG_LINK
+            if Config.FB_LINK is not None:
+                fb_link=Config.FB_LINK
+            if Config.GITHUB_LINK is not None:
+                github_link=Config.GITHUB_LINK
+        except  Exception:
+            pass
+        social_str=f"\n**My Social Accounts**\n\
+        \nGithub: [branch here]({github_link})\n \
+        \nFacebook: [click here]({fb_link})\n\nInstagram: [Go here]({ig_link})\n"
+        await event.edit(social_str)
     elif input_str == "guide":
         await event.edit(f"[ Follow this Guide ](https://authoritydmc.github.io/BEASTBOT-REBORN/)")
     else:
