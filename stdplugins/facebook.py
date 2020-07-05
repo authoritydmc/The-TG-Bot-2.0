@@ -53,7 +53,7 @@ async def _(event):
 
 SYNTAX.update({
     "fb": "\
-**Requested Module --> ytv**\
+**Requested Module --> fb**\
 \n\n**Detailed usage of fuction(s):**\
 \n\n```.fb <url> [or as a reply to a message to download]```\
 \nUsage: Download the Facebook video as in video format\
