@@ -1,15 +1,13 @@
-from uniborg.util import admin_cmd
+from uniborg.util import admin_cmd,progress
 from sql_helpers.global_variables_sql import  SYNTAX, MODULE_LIST
 import requests
 import asyncio
 from bs4 import  BeautifulSoup
 import random
+import time
 import os
 MODULE_LIST.append("fb (downloads fb videos)")
 
-def progress(current, total):
-
-    logger.info("Downloaded {} of {}\nCompleted {}".format(current, total, (current / total) * 100))
 
 
 @borg.on(admin_cmd(pattern="fb ?(.*)"))
@@ -25,21 +23,25 @@ async def _(event):
     vtitle=soup.find("meta",property="og:title")
     if vurl:
         video_link=vurl["content"]
+        video_title=vtitle["content"]
         await event.edit("`Preparing to download `"+vtitle["content"])
         data=requests.get(video_link)
         f=open(f"temp_fb_down_{random.randint(1,100)}.mp4","wb")
         video_path=f.name
         f.write(data.content)
+        mone= await event.edit(f"Uploading file {video_title}")
+        c_time = time.time()
         await borg.send_file(
         event.chat_id,
             video_path,
-        caption=vtitle["content"],
-        progress_callback=progress
+        caption=video_title,
+        progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, mone, c_time, f"Uploading file {video_title}"))
     )
         await  event.edit("done sending...")
         f.close()
         os.remove(video_path)
-       
+        await event.delete()
 
     else:
         await event.edit("Error Can not find any Video Link")
