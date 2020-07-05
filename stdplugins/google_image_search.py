@@ -14,19 +14,23 @@ MODULE_LIST.append("img (image search query)")
 
 def progress(current, total):
     logger.info("Downloaded {} of {}\nCompleted {}".format(current, total, (current / total) * 100))
-@borg.on(admin_cmd(pattern="img (.*)"))
+@borg.on(admin_cmd(pattern="img ?(\d)? ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
     file_path=[]
-    input_str = event.pattern_match.group(1)
+    input_str = event.pattern_match.group(2)
+    no_img=event.pattern_match.group(1)
+    if not no_img:
+        no_img=1
+    logger.info(f"Downloading {no_img} images")
     await event.edit("searching image of "+input_str)
     try:
-        file_path=await search_and_download(event,input_str)
+        file_path=await search_and_download(event,input_str,number_images=int(no_img))
     except  Exception as e:
         logger.warn(f"error {e}")
 
-        await event.edit("error "+str(e))
+        # await event.edit("error "+str(e))
         await asyncio.sleep(3)
         await event.edit("Installing particular driver")
         res=await getdriver.run(event,"exception @ main")

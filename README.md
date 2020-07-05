@@ -32,6 +32,8 @@ using python's pip install telethon..
 ##### step2.2 run 
 > python session_strings.py
 
+##### step 2.2.1 Enter the API HASH and APP ID as asked by the program.
+
 ##### step2.3 enter your mobile number with country code for eg +919876543210
 
 ##### step 2.4 enter the code you received 

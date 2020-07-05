@@ -5,4 +5,6 @@
 /DOWNLOADS/*
 config.py
 *.pyc
+*.mp4
+*Pipfile*
 log_load_plugin.txt
