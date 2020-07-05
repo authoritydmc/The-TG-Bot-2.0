@@ -6,8 +6,42 @@ from bs4 import  BeautifulSoup
 import random
 import time
 import html
+import math
 import os
 MODULE_LIST.append("fb (downloads fb videos)")
+
+
+async def download(event,url, filename):
+    filepath=""
+    with open(filename, 'wb') as f:
+        filepath=f.name
+        response = requests.get(url, stream=True)
+        total = response.headers.get('content-length')
+        await  event.edit("Downloading "+filename)
+
+        if total is None:
+            f.write(response.content)
+        else:
+            downloaded = 0
+            HS_total=humanSize(total)
+            total = int(total)
+            c_time=time.time()
+            for data in response.iter_content(chunk_size=max(int(total/1000), 1024*1024)):
+                downloaded += len(data)
+                HS_downloaded=humanSize(downloaded)
+                percentage=downloaded*100/total
+                f.write(data)
+                done = int(50*downloaded/total)
+                progress_str = "[{0}{1}]\nPercent: {2}%\n".format(
+            ''.join(["█" for i in range(math.floor(percentage / 5))]),
+            ''.join(["░" for i in range(20 - math.floor(percentage / 5))]),
+            round(percentage, 2))
+
+                await event.edit("Downloading {} \n**Progress**\n{}".format(
+                        filename,
+                   progress_str
+                ))
+    return filepath
 
 
 
@@ -28,12 +62,16 @@ async def _(event):
         video_link=vurl["content"]
         video_title=html.unescape(vtitle["content"])
         video_description=html.unescape(description["content"]) if description else video_title
-        await event.edit("`Preparing to download `"+video_description)
-        data=requests.get(video_link)
-        f=open(f"temp_fb_down_{random.randint(1,100)}.mp4","wb")
-        video_path=f.name
-        f.write(data.content)
-        mone= await event.edit(f"Uploading file {video_title}")
+        mone= await event.edit("`Preparing to download `"+video_description)
+        video_path= await download(mone,video_link,f"{video_title}.mp4")
+
+        # data=requests.get(video_link)
+        # f=open(,"wb")
+        # video_path=f.name
+        # f.write(data.content)
+
+
+        await event.edit(f"Uploading file {video_title}")
         c_time = time.time()
         await borg.send_file(
         event.chat_id,
@@ -43,7 +81,6 @@ async def _(event):
                 progress(d, t, mone, c_time, f"Uploading file {video_title}"))
     )
         await  event.edit("done sending...")
-        f.close()
         os.remove(video_path)
         await event.delete()
 
