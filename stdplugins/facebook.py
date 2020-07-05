@@ -5,6 +5,7 @@ import asyncio
 from bs4 import  BeautifulSoup
 import random
 import time
+import html
 import os
 MODULE_LIST.append("fb (downloads fb videos)")
 
@@ -25,9 +26,9 @@ async def _(event):
 
     if vurl:
         video_link=vurl["content"]
-        video_title=vtitle["content"]
-        video_description=description["content"] if description else video_title
-        await event.edit("`Preparing to download `"+vtitle["content"])
+        video_title=html.unescape(vtitle["content"])
+        video_description=html.unescape(description["content"]) if description else video_title
+        await event.edit("`Preparing to download `"+video_description)
         data=requests.get(video_link)
         f=open(f"temp_fb_down_{random.randint(1,100)}.mp4","wb")
         video_path=f.name
