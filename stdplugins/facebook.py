@@ -28,16 +28,18 @@ async def _(event):
         await event.edit("`Preparing to download `"+vtitle["content"])
         data=requests.get(video_link)
         f=open(f"temp_fb_down_{random.randint(1,100)}.mp4","wb")
+        video_path=f.name
         f.write(data.content)
         await borg.send_file(
         event.chat_id,
-            f.name,
+            video_path,
         caption=vtitle["content"],
         progress_callback=progress
     )
         await  event.edit("done sending...")
-        os.remove(f.name)
         f.close()
+        os.remove(video_path)
+       
 
     else:
         await event.edit("Error Can not find any Video Link")
