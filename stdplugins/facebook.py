@@ -1,4 +1,4 @@
-from uniborg.util import admin_cmd,progress
+from uniborg.util import admin_cmd,progress,humanbytes
 from sql_helpers.global_variables_sql import  SYNTAX, MODULE_LIST
 import requests
 import asyncio
@@ -34,9 +34,11 @@ async def download(event,url, filename):
             ''.join(["░" for i in range(20 - math.floor(percentage / 5))]),
             round(percentage, 2))
 
-                await event.edit("Downloading {} \n**Progress**\n{}".format(
+                await event.edit("Downloading {} \n**Progress**\n{}\n **Size: **{} of {}".format(
                         filename,
-                   progress_str
+                   progress_str,
+                   humanbytes(downloaded),
+                  humanbytes( total)
                 ))
     return filepath
 
