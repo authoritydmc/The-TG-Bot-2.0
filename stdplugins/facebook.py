@@ -21,9 +21,12 @@ async def _(event):
     soup=BeautifulSoup(res.text,'html.parser')
     vurl = soup.find("meta",  property="og:video:url")
     vtitle=soup.find("meta",property="og:title")
+    description=soup.find("meta",property="twitter:description")
+
     if vurl:
         video_link=vurl["content"]
         video_title=vtitle["content"]
+        video_description=description["content"] if description else video_title
         await event.edit("`Preparing to download `"+vtitle["content"])
         data=requests.get(video_link)
         f=open(f"temp_fb_down_{random.randint(1,100)}.mp4","wb")
@@ -34,7 +37,7 @@ async def _(event):
         await borg.send_file(
         event.chat_id,
             video_path,
-        caption=video_title,
+        caption=video_description,
         progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
                 progress(d, t, mone, c_time, f"Uploading file {video_title}"))
     )
