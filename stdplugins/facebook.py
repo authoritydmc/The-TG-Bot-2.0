@@ -23,12 +23,9 @@ async def download(event,url, filename):
             f.write(response.content)
         else:
             downloaded = 0
-            HS_total=humanSize(total)
             total = int(total)
-            c_time=time.time()
             for data in response.iter_content(chunk_size=max(int(total/1000), 1024*1024)):
                 downloaded += len(data)
-                HS_downloaded=humanSize(downloaded)
                 percentage=downloaded*100/total
                 f.write(data)
                 done = int(50*downloaded/total)
