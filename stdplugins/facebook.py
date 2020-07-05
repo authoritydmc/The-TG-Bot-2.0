@@ -45,7 +45,7 @@ async def _(event):
         await event.edit("Error Can not find any Video Link")
 
 
-  SYNTAX.update({
+SYNTAX.update({
     "fb": "\
 **Requested Module --> ytv**\
 \n\n**Detailed usage of fuction(s):**\
