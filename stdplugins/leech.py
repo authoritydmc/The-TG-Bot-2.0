@@ -293,11 +293,12 @@ async def leech2drive(event):
     if event.fwd_from:
         return
     var = event.pattern_match.group(1)
+    telegraph = "https://telegra.ph/Leech2Drive-Setup-Tutorial-02-21"
     if not var:
         rep = await event.get_reply_message()
         var = rep.text
     if str(var) == "setup":
-        telegraph = "https://telegra.ph/Leech2Drive-Setup-Tutorial-02-21"
+        
         return await event.edit(f"Find gdrive setup instructions for leech2drive [here]({telegraph}).")
     # print(var)
     uris = [var]
