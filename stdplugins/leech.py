@@ -30,10 +30,14 @@ from sql_helpers.global_variables_sql import SYNTAX, MODULE_LIST
 MODULE_LIST.append("leech")
 MODULE_LIST.append("leech2drive")
 MODULE_LIST.append("leech2tg")
+try:
+    cmd = ["aria2c", "--enable-rpc", "--rpc-listen-all=false", "--rpc-listen-port", "6800",  "--max-connection-per-server=10", "--rpc-max-request-size=1024M", "--seed-time=0.01", "--min-split-size=10M", "--follow-torrent=mem", "--split=10", "--daemon=true"]
 
-cmd = "aria2c --enable-rpc --rpc-listen-all=false --rpc-listen-port 6800  --max-connection-per-server=10 --rpc-max-request-size=1024M --seed-time=0.01 --min-split-size=10M --follow-torrent=mem --split=10 --daemon=true"
-
-aria2_is_running = os.system(cmd)
+    aria2_is_running = subprocess.run(cmd,stdout=subprocess.PIPE)
+    print("LEECH",aria2_is_running.stdout)
+except:
+    print("LEEch error aria2c nt dn")
+    os.system("apt install aria2")
 
 aria2 = aria2p.API(aria2p.Client(
     host="http://localhost", port=6800, secret=""))
@@ -65,7 +69,7 @@ async def magnet_download(event):
         return
     var = event.pattern_match.group(1)
     if not var:
-        rep = event.get_reply_message()
+        rep = await event.get_reply_message()
         var = rep.text
     # print(var)
     uris = [var]
