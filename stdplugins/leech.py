@@ -102,13 +102,13 @@ async def magnet_download(event):
     await event.edit(f"```{file.name}``` leeched successfully!")
 
 
-@borg.on(admin_cmd("l2tg (.*)"))
+@borg.on(admin_cmd("l2tg ?(.*)"))
 async def leech2tg(event):
     if event.fwd_from:
         return
     var = event.pattern_match.group(1)
     if not var:
-        rep = event.get_reply_message()
+        rep = await event.get_reply_message()
         var = rep.text
     # print(var)
     uris = [var]
@@ -294,7 +294,7 @@ async def leech2drive(event):
         return
     var = event.pattern_match.group(1)
     if not var:
-        rep = event.get_reply_message()
+        rep = await event.get_reply_message()
         var = rep.text
     if str(var) == "setup":
         telegraph = "https://telegra.ph/Leech2Drive-Setup-Tutorial-02-21"
