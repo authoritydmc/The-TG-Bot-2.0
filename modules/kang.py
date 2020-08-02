@@ -1,4 +1,4 @@
-# For BEASTBOT v3
+# For The-TG-Bot v3
 # By Priyam Kalra
 # Syntax (.kang <pack_number>)
 
@@ -57,19 +57,19 @@ async def handler(event):
         if not pack_id:
             pack_id = 1
         packname = f"{botuser}'s kang pack vol.{pack_id}"
-        packshortname = f"thetgbot_kang_pack_vol{pack_id}_{userid}"
+        packshortname = f"BEASTBOT_PACK_{pack_id}_{userid}"
     else:
         if pack_id:
             pack_id = f" {pack_id}"
         packname = f"{Config.STICKER_PACK}{pack_id}"
-        packshortname = f"Uniborg_Pack{pack_id}_{userid}"
+        packshortname = f"BEASTBOT_PACK_{pack_id}_{userid}"
 
     is_a_s = is_it_animated_sticker(reply_message)
-    file_ext_ns_ion = "@The_TG_Bot_Sticker.png"
+    file_ext_ns_ion = "BEASTBOT_STICKER_1.png"
     file = await client.download_file(reply_message.media)
     uploaded_sticker = None
     if is_a_s:
-        file_ext_ns_ion = "@The_TG_Bot_ANIMATED.tgs"
+        file_ext_ns_ion = "BEASBOT_ANIMATED.tgs"
         uploaded_sticker = await client.upload_file(file, file_name=file_ext_ns_ion)
         packname = f"{packname} [ANIMATED]"
         packshortname = f"{packshortname}_animated"
