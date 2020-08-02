@@ -94,3 +94,4 @@ urllib3==1.25.8
 webencodings==0.5.1
 websocket-client==0.57.0
 yarl==1.5.1
+youtube_dl

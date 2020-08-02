@@ -227,7 +227,7 @@ async def download_video(v_url):
 
         await v_url.delete()
         
-SYNTAX.update({
+Config.HELPER.update({
     "yta": "\
 **Requested Module --> yta**\
 \n\n**Detailed usage of fuction(s):**\
