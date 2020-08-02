@@ -5,6 +5,7 @@ import sys
 import subprocess
 import os
 import asyncio
+
 url="https://chromedriver.chromium.org/downloads"
 pat=r"https://chromedriver.storage.googleapis.com/index.html[\w?=.]+"
 
@@ -23,7 +24,7 @@ def getResponse(version_needed):
             bestlink=link
     return bestlink
 
-async def run(event,caller="None"):
+async def DriverDownload(event,caller="None"):
     try:
         await event.edit("Running from "+caller)
         await asyncio.sleep(1)

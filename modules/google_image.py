@@ -6,11 +6,12 @@ import io
 import requests
 from PIL import Image
 import hashlib
-import getdriver
+from modules import getdriver
 
 
 def progress(current, total):
     logger.info("Downloaded {} of {}\nCompleted {}".format(current, total, (current / total) * 100))
+
 @client.on(register(pattern="img ?(\d)? ?(.*)"))
 async def _(event):
     if event.fwd_from:
@@ -30,7 +31,7 @@ async def _(event):
         # await event.edit("error "+str(e))
         await asyncio.sleep(3)
         await event.edit("Installing particular driver")
-        res=await getdriver.run(event,"exception @ main")
+        res=await getdriver.DriverDownload(event,"exception @ main")
         if "Error" in res:
             await event.edit("Failed to Install driver... meh :(")
         else:
@@ -42,7 +43,7 @@ async def _(event):
     if len(file_path)==0:
         logger.info("NO image found or error occured")
         return
-    await borg.send_file(
+    await client.send_file(
         event.chat_id,
         file_path,
         caption="Images of "+input_str,
@@ -53,7 +54,7 @@ async def _(event):
         os.remove(each_file)
 
     try:
-        os.rmdir(str(Config.TMP_DOWNLOAD_DIRECTORY+input_str).replace(" ","_"))
+        os.rmdir(str(Config.DOWNLOAD_DIRECTORY+input_str).replace(" ","_"))
     except :
         logger.error("Can not delete images directory")
 
@@ -140,7 +141,7 @@ def persist_image(folder_path:str,url:str):
     return None
 
     
-async def search_and_download(event,search_term:str,target_path=Config.TMP_DOWNLOAD_DIRECTORY,number_images=Config.GOOGLE_IMAGES_LIMIT):
+async def search_and_download(event,search_term:str,target_path=Config.DOWNLOAD_DIRECTORY,number_images=1):
     target_folder = os.path.join(target_path,'_'.join(search_term.lower().split(' ')))
     files_paths=[]
     chromedriverPath=''
@@ -156,7 +157,7 @@ async def search_and_download(event,search_term:str,target_path=Config.TMP_DOWNL
             wd= webdriver.Chrome('stdplugins/chromedriver')
             #find in custom path now
         except:
-            res=await getdriver.run(event,"search and download ...")
+            res=await getdriver.DriverDownload(event,"search and download ...")
             if "Done" in res:
                 await event.edit("Driver successfully loaded ...running webdriver with custom path")
         wd= webdriver.Chrome('stdplugins/chromedriver')
