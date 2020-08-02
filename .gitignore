@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.log
 *.session
 *chromedriver*
@@ -8,3 +9,10 @@ config.py
 *.mp4
 *Pipfile*
 log_load_plugin.txt
+=======
+__pycache__
+config.py
+*.session
+development.py
+Pipfile
+>>>>>>> MASTERV3
