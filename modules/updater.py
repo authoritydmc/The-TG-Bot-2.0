@@ -1,6 +1,7 @@
  # For BEASTBOT v3
 # Orignally made for PaperPlane Extended by @Three_Cube_TeKnoways
 # Modified by Priyam Kalra on 6/21/2020
+#modified by authoritydmc for beastbot
 
 import os
 import sys
@@ -15,7 +16,7 @@ IS_SELECTED_DIFFERENT_BRANCH = (
     "`is being used:\n`"
     "`Please switch to a stable build, and restart the updater.`"
 )
-OFFICIAL_UPSTREAM_REPO = "https://github.com/PriyamKalra/BEASTBOT-3.0/"
+OFFICIAL_UPSTREAM_REPO = "https://github.com/authoritydmc/BEASTBOT-REBORN"
 BOT_IS_UP_TO_DATE = "`BEASTBOT is up-to-date.\nEnjoy!`"
 NEW_BOT_UP_DATE_FOUND = "`BEASTBOT update is on its way!\nThis should take about 2 minutes, please wait and then try to run .alive`"
 REPO_REMOTE_NAME = "updater"
