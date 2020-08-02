@@ -1,104 +1,97 @@
-# The-TG-Bot
+# BEAST_BOT REBORN V 3.0+
+**based on telethon 1.16.0**
+Customized #UniBorg based on telethon.
 
-![LOGO](https://raw.githubusercontent.com/justaprudev/The-TG-Bot/v3/logo.png)
+## How to use
 
-The-TG-Bot is back with the ultimate v3!!
+#### Step1: 
 
-## Requirements
+goto [my.telegram.org/apps](https://telegram.org/apps) **use VPN in india to access the site**
 
-- openssl
 
-```
-pkg install openssl
-```
+#### step2: login and setup the app ..
 
-- git
 
-```
-pkg install git
-```
+you will get **APP ID**  and **APP HASH** copy these two value at safe place (you will need later)
 
-- python
+**Figure for reference**
 
-```
-pkg install python
-```
+![APP_ID and APP_HASH ](https://i.ibb.co/CwPdL7c/app-id-hash.jpg)
 
-- telethon
+#### Important Setup steps( very much imp)
 
-```
-pip install telethon
-```
+##### step 2.1: clone this repo and pip install telethon first...
 
-- virtualenv
+> git clone https://github.com/authoritydmc/BEASTBOT-REBORN.git 
 
-```
-pip install virtualenv
-```
 
-## Connecting to your Telegram Account
+using python's pip install telethon.. 
 
-```
-git clone https://github.com/justaprudev/The-TG-Bot
-cd The-TG-Bot
-python3 -m session
-```
+> pip install telethon
 
-- Run the above code in terminal
-- Enter APP ID, API HASH and phone number conntected to your telegram account
-- Enter login code and/or password
-- Copy the session and continue to installation
+##### step2.2 run 
+> python session_strings.py
 
-## Installing
+##### step 2.2.1 Enter the API HASH and APP ID as asked by the program.
 
-#### The Easy Way
+##### step2.3 enter your mobile number with country code for eg +919876543210
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/justaprudev/The-TG-Bot/tree/v3)
+##### step 2.4 enter the code you received 
 
-- Hit the "Deploy to Heroku" button and enter APP ID, API HASH and phone number conntected to your telegram account
-- Enter the session copied while connecting your telegram account
-- Click on the "Deploy" button on the next page
-- After the process is completed, try running .alive on telegram
+##### step 2.5 you will get a string as a response starting with something like 1Bqvt......
 
-#### The Legacy Way
+ copy this String somwhere safe .this is your **SESSION** value
 
-- Enter APP ID, API HASH, SESSION in production.py
-- Run the code given below in terminal
-- After the process is completed, try running .alive on telegram
+#### step3: Create an account on [Heroku.com](https://heroku.com)
 
-```
-git clone https://github.com/justaprudev/The-TG-Bot
-cd The-TG-Bot
+#### step4: click on deploy button
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+#### step5 : Fill in all the Three required Value you copied and app name(anything) ..and finally click on deploy.
+
+
+
+![heroku setting page ](https://i.ibb.co/B2RPWWn/heroku-setting.jpg)
+![heroku setting page](https://i.ibb.co/YPFkpzR/heroku-settting2.jpg)
+
+#### Finished .. your bot must be up and running by now..
+
+## NOT FOR DEPLOYERS... below information only for Developers and Collaborators
+
+### Installing
+
+
+Simply clone the repository and run the main file:
+```sh
+git clone https://github.com/uniborg/uniborg.git
+cd uniborg
 virtualenv -p /usr/bin/python3 venv
 . ./venv/bin/activate
 pip install -r requirements.txt
-python3 -m thetgbot
+# <Create config.py with variables as given below>
+python3 -m stdborg
 ```
 
-## Read the docs
+An example `config.py` file could be:
 
-Here are the most useful "global" variables that can be used on any module you create:
+**Not All of the variables are mandatory**
 
-- Config: The class which allows access to enviroment variables defined in production.py
-- client: A modified version of the telegram client.
-- register: Use this with the telegram client to make your life a little easier, example:
+__The UniBorg should work by setting only the first two variables__
 
+```python3
+from sample_config import Config
+
+class Development(Config):
+  APP_ID = 6
+  API_HASH = "eb06d4abfb49dc3eeb1aeb98ae0f581e"
+  TG_BOT_TOKEN_BF_HER = ""
+  TG_BOT_USER_NAME_BF_HER = ""
+  UB_BLACK_LIST_CHAT = []
+  # chat ids or usernames, it is recommended to use chat ids,
+  # providing usernames means an additional overhead for the user
+  CHATS_TO_MONITOR_FOR_ANTI_FLOOD = []
+  # specify LOAD and NO_LOAD
+  LOAD = []
+  NO_LOAD = []
 ```
-@client.on(register("hello"))
-async def handler(event):
-	await event.reply("world")
-```
-
-- progress: Generic progress callback for both uploads and downloads.
-- time_formatter: Input time in milliseconds, to get beautified time, as string.
-- humanbytes: Input size in bytes, outputs in a human readable format.
-- storage: A global storage dictionary for the current session.
-- You can learn alot just by reading the telethon [documentory](https://docs.telethon.dev/en/latest/)
-- Enjoy creating your own modules :P
-
-## Credits
-
-- [Telethon](https://github.com/LonamiWebs/Telethon) (Obviously)
-- [Uniborg](https://github.com/SpEcHiDe/UniBorg) (The core)
-- [FTG modules repo](https://github.com/friendly-telegram/modules-repo)
-- [PPE](https://github.com/RaphielGang/Telegram-Paperplane)
