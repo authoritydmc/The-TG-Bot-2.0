@@ -1,4 +1,4 @@
-# For The-TG-Bot v3
+# For BEASTBOT v3
 # Syntax .bash <code>
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this

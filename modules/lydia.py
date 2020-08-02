@@ -1,4 +1,4 @@
-# For The-TG-Bot v3
+# For BEASTBOT v3
 # Syntax
 # .enableai [as a reply to user's message] // Turns AI on For that user.
 # .disableai [as a reply to user's message] // Turns AI off For that user.

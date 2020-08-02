@@ -1,4 +1,4 @@
-# For The-TG-Bot v3
+# For BEASTBOT v3
 # Syntax .admemes
 
 from telethon.tl.types import ChannelParticipantsAdmins, ChannelParticipantAdmin, ChannelParticipantCreator

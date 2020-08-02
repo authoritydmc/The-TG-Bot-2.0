@@ -1,4 +1,4 @@
-# For The-TG-Bot v3
+# For BEASTBOT v3
 # Syntax .lock (msg, media, sticker, gif, gamee, ainline, gpoll, adduser, cpin, changeinfo, bots, commands, email, forward, url)
 
 from modules.sql.locks_sql import update_lock, is_locked, get_locks

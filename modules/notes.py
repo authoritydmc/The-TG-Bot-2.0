@@ -1,4 +1,4 @@
-# For The-TG-Bot v3
+# For BEASTBOT v3
 # By Priyam Kalra
 # Based on the note module made by RaphielGang (https://da.gd/X4Mnf)
 # Syntax (.save <notename>, .get <notename>, .clear <notename>, .clearall)

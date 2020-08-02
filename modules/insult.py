@@ -1,4 +1,4 @@
-# For The-TG-Bot v3
+# For BEASTBOT v3
 # By Priyam Kalra
 # Based on the insult module made by Hackintosh for friendly telegram bot (https://da.gd/RG2hfe)
 # Syntax (.insult <no_of_times_to_insult>)

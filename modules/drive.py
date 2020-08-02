@@ -2,7 +2,7 @@
 # https://github.com/cyberboysumanjay/Gdrivedownloader/blob/master/gdrive_upload.py
 # there might be some changes made to suit the needs for this repository
 # Licensed under MIT License
-# For The-TG-Bot v3
+# For BEASTBOT v3
 # Modified by Priyam Kalra 6/21/2020
 # Syntax: .drive
 

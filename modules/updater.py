@@ -1,4 +1,4 @@
- # For The-TG-Bot v3
+ # For BEASTBOT v3
 # Orignally made for PaperPlane Extended by @Three_Cube_TeKnoways
 # Modified by Priyam Kalra on 6/21/2020
 
@@ -15,9 +15,9 @@ IS_SELECTED_DIFFERENT_BRANCH = (
     "`is being used:\n`"
     "`Please switch to a stable build, and restart the updater.`"
 )
-OFFICIAL_UPSTREAM_REPO = "https://github.com/PriyamKalra/The-TG-Bot-3.0/"
-BOT_IS_UP_TO_DATE = "`The-TG-Bot is up-to-date.\nEnjoy!`"
-NEW_BOT_UP_DATE_FOUND = "`The-TG-Bot update is on its way!\nThis should take about 2 minutes, please wait and then try to run .alive`"
+OFFICIAL_UPSTREAM_REPO = "https://github.com/PriyamKalra/BEASTBOT-3.0/"
+BOT_IS_UP_TO_DATE = "`BEASTBOT is up-to-date.\nEnjoy!`"
+NEW_BOT_UP_DATE_FOUND = "`BEASTBOT update is on its way!\nThis should take about 2 minutes, please wait and then try to run .alive`"
 REPO_REMOTE_NAME = "updater"
 ACTIVE_BRANCH_NAME = "v3"
 DIFF_MARKER = "HEAD..{remote_name}/{branch_name}"
@@ -30,7 +30,7 @@ INVALID_APP_NAME = "INVALID APP NAME: Please set the name of your bot in ENV var
 
 @client.on(register(pattern="update ?(.*)", allow_sudo=True))
 async def updater(message):
-    await message.edit("Looking for updates // The-TG-Bot v3.0")
+    await message.edit("Looking for updates // BEASTBOT v3.0")
     try:
         repo = git.Repo()
     except git.exc.InvalidGitRepositoryError as e:
@@ -109,7 +109,7 @@ async def deploy_start(client, message, refspec, remote):
 
 Config.HELPER.update({"updater": "\
 ```.update```\
-\nUsage: Update The-TG-Bot to the lastest stable build.\
+\nUsage: Update BEASTBOT to the lastest stable build.\
 \n\n**`HEROKU_API_KEY` ENV variable is mandatory:**\
 \nTo get a valid API key, goto https://dashboard.heroku.com/account\
 \nThen open API key tab..\

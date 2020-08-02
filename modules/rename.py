@@ -1,4 +1,4 @@
-# For The-TG-Bot v3
+# For BEASTBOT v3
 # Syntax .rename <new_file_name>
 
 import aiohttp

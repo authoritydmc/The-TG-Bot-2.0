@@ -1,4 +1,4 @@
-# For The-TG-Bot v3
+# For BEASTBOT v3
 # Modified by Priyam Kalra 6/21/2020
 # Get information about an user on GitHub
 # Syntax .github <username>

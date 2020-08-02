@@ -24,7 +24,7 @@ class Userbot(TelegramClient):
     def __init__(
             self, session, *, module_path="modules", storage=None,
             bot_token=None, api_config=None, **kwargs):
-        self._name = "The-TG-Bot-v3"
+        self._name = "BEASTBOT-v3"
         self.storage = storage or (lambda n: Storage(Path("data") / n))
         self._logger = logging.getLogger("Userbot")
         self._modules = {}
@@ -35,7 +35,7 @@ class Userbot(TelegramClient):
             "api_id": 6,
             "api_hash": "eb06d4abfb49dc3eeb1aeb98ae0f581e",
             "device_model": "GNU/Linux nonUI",
-            "app_version": "@The-TG-Bot v3",
+            "app_version": "@BEASTBOT v3",
             "lang_code": "en",
             **kwargs
         }
@@ -85,7 +85,7 @@ class Userbot(TelegramClient):
         mod.modcount = 1  # Dafault mod count is one to account for core module
         for i in os.listdir("modules"):
             mod.modcount += 1 if i != "sql" else 0
-        mod.build = f"The-TG-Bot-v3b{''.join(datetime.today().strftime('%D').split('/'))[:-2]}{mod.modcount}"
+        mod.build = f"BEASTBOT-v3b{''.join(datetime.today().strftime('%D').split('/'))[:-2]}{mod.modcount}"
         mod.user = f"@{self.me.username}"
         mod.logger = logging.getLogger(shortname)
         mod.Config = self.config

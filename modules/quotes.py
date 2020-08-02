@@ -1,6 +1,6 @@
 # Friendly Telegram (telegram userbot)
 # Copyright (C) 2018-2019 The Authors
-# Modified for The-TG-Bot-3.0
+# Modified for BEASTBOT-3.0
 # Originally written for Friendly Telegram by Hackintosh
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by

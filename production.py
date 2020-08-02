@@ -17,7 +17,7 @@ class Config(object):
         "DOWNLOAD_DIRECTORY", "./DOWNLOADS/")
     ANTI_PM_SPAM = bool(os.environ.get("ANTI_PM_SPAM", False))
     MAX_PM_FLOOD = int(os.environ.get("MAX_PM_FLOOD", 5))
-    COMMAND_HANDLER = os.environ.get("COMMAND_HANDLER", "\.")
+    COMMAND_HANDLER = os.environ.get("COMMAND_HANDLER", "\. ?")
     SUDO_USERS = set(int(x) for x in os.environ.get("SUDO_USERS", "").split())
     BLACK_LIST = set(int(x) for x in os.environ.get(
         "BLACK_LIST", "").split())

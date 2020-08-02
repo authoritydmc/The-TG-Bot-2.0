@@ -1,4 +1,4 @@
-# For The-TG-Bot v3
+# For BEASTBOT v3
 # Syntax .id
 
 from telethon.utils import pack_bot_file_id

@@ -117,7 +117,7 @@ async def help(event):
         return
     key = event.pattern_match.group(1)
     if not key:
-        msg = "The-TG-Bot v3 Modules:"
+        msg = "BEASTBOT v3 Modules:"
         title = ""
         for key in sorted(Config.HELPER):
             new_title = f"\n\n{key[0].upper()}\n\n"
@@ -148,7 +148,7 @@ async def alive(event):
     username = f"\nUser: `{user}\n"
     memory = psutil.virtual_memory()
     specs = f"`System: {uname.system}\nRelease: {uname.release}\nVersion: {uname.version}\nProcessor: {uname.processor}\nMemory [RAM]: {get_size(memory.total)}`"
-    help_string = f"**// The-TG-Bot v3 is running //**\n\n**General Info:**\n`Build Version: {build} {username}`Github Repository: `{Config.GITHUB_REPO_LINK}\n\n**System Specifications:**\n{specs}\n```Python: {sys.version}```\n```Telethon: {__version__}```\n\n**Contact developer:** [justaprudev](https://t.me/justaprudev) \n**Update channel:** [Join](https://t.me/The_TG_Bot) \n**Support group:** [Join](https://t.me/The_TG_Bot_Support)"
+    help_string = f"**// BEASTBOT v3 is running //**\n\n**General Info:**\n`Build Version: {build} {username}`Github Repository: `{Config.GITHUB_REPO_LINK}\n\n**System Specifications:**\n{specs}\n```Python: {sys.version}```\n```Telethon: {__version__}```\n\n**Contact developer:** [justaprudev](https://t.me/justaprudev) \n**Update channel:** [Join](https://t.me/The_TG_Bot) \n**Support group:** [Join](https://t.me/The_TG_Bot_Support)"
     await client.send_file(
         event.chat_id,
         caption=help_string,

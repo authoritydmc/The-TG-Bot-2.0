@@ -1,4 +1,4 @@
-# For The-TG-Bot-3.0
+# For BEASTBOT-3.0
 """Reply to an image/sticker with .mmf` 'text on top' ; 'text on bottom
 base by: @r4v4n4
 created by: @A_Dark_Princ3

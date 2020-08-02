@@ -1,7 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not diwordibuted with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-# For The-TG-Bot v3
+# For BEASTBOT v3
 # Modified by @authoritydmc
 # Modified by Priyam Kalra 6/21/2020
 # Syntax .search <text>

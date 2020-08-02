@@ -1,4 +1,4 @@
-# For The-TG-Bot v3
+# For BEASTBOT v3
 # Syntax (.pin <loud (optional)>, .promote <optional_rank>, .demote, .ban, .unban, .mute, .unmute, .kick as a reply to a user's msg)
 
 from telethon.tl.functions.channels import EditAdminRequest, EditBannedRequest

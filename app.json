@@ -1,7 +1,7 @@
 {
-  "name": "The-TG-Bot v3",
+  "name": "BEASTBOT v3",
   "description": "Modular Telegram userbot!",
-  "logo": "https://raw.githubusercontent.com/justaprudev/The-TG-Bot/v3/logo.png",
+  "logo": "https://raw.githubusercontent.com/justaprudev/BEASTBOT/v3/logo.png",
   "keywords": [
     "telegram",
     "userbot",
@@ -9,7 +9,7 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/justaprudev/The-TG-Bot/",
+  "repository": "https://github.com/justaprudev/BEASTBOT/",
   "website": "",
   "success_url": "https://t.me/justaprudev",
   "env": {
@@ -81,7 +81,7 @@
       "required": false
     },
     "GITHUB_REPO_LINK": {
-      "description": "Set the link to your github repository here, default is https://github.com/PriyamKalra/The-TG-Bot-3.0",
+      "description": "Set the link to your github repository here, default is https://github.com/PriyamKalra/BEASTBOT-3.0",
       "required": false
     }
   },

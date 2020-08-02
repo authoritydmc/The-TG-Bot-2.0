@@ -1,4 +1,4 @@
-# For The-TG-Bot v3
+# For BEASTBOT v3
 # Syntax .restart
 
 import os
@@ -8,7 +8,7 @@ import asyncio
 
 @client.on(register(pattern="restart ?(.*)", allow_sudo=True))
 async def handler(message):
-    await message.edit("The-TG-Bot v3 has been restarted.\nTry .alive or .ping to check if its alive.")
+    await message.edit("BEASTBOT v3 has been restarted.\nTry .alive or .ping to check if its alive.")
     asyncio.get_event_loop().create_task(restart())
 
 
