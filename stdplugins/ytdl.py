@@ -23,6 +23,9 @@ from sql_helpers.global_variables_sql import SYNTAX, MODULE_LIST
 MODULE_LIST.append("ytv(yt-dl video)")
 MODULE_LIST.append("yta(yt-dl audio)")
 
+def youtube_link_extractor(term):
+    pass
+
 async def progress(current, total, event, start, type_of_ps, file_name=None):
     """Generic progress_callback for uploads and downloads."""
     now = time.time()
