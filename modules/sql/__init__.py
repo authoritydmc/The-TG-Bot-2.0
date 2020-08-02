@@ -7,8 +7,8 @@ ENV = bool(os.environ.get("ENV", False))
 if ENV:
     from production import Config
 else:
-    if os.path.exists("config.py"):
-        from development import Config
+    if os.path.exists("development.py"):
+        from development import devConfig as Config
 
 
 def start() -> scoped_session:

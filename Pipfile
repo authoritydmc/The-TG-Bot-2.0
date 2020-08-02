@@ -1,0 +1,27 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+telethon = "==1.11.3"
+aiofiles = "*"
+aiohttp = "*"
+aria2p = "*"
+async-generator = "*"
+asyncurban = "*"
+beautifulsoup4 = "*"
+bs4 = "*"
+bwb = "==3.0.0"
+cfscrape = "*"
+coffeehouse = "*"
+cowpy = "*"
+cryptg = "*"
+dnspython = "*"
+dropbox = "*"
+emoji = "*"
+
+[requires]
+python_version = "3.8"

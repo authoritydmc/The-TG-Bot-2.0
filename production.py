@@ -26,7 +26,7 @@ class Config(object):
     DRIVE_AUTH_TOKEN_DATA = os.environ.get("DRIVE_AUTH_TOKEN_DATA", None)
     LYDIA_API = os.environ.get("LYDIA_API", None)
     GITHUB_REPO_LINK = os.environ.get(
-        "GITHUB_REPO_LINK", "https://github.com/justaprudev/The-TG-Bot")
+        "GITHUB_REPO_LINK", "https://github.com/authoritydmc/BEASTBOT-REBORN")
     DROPBOX_TOKEN = os.environ.get("DROPBOX_TOKEN", None)
     DRIVE_ACCOUNT = os.environ.get("DRIVE_ACCOUNT", None)
     IPABOX_FOLDER = os.environ.get("IPABOX_FOLDER", None)
