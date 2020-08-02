@@ -1,1 +1,1 @@
-worker: python3 -m thetgbot
+worker: python3 -m BEASTBOT
