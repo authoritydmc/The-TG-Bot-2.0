@@ -1,7 +1,7 @@
-# For BEASTBOT v3
+# For The-TG-Bot v3
 # Syntax (.approve, .block)
 
-
+import os
 import asyncio
 import json
 from modules.sql.pmpermit_sql import is_approved, approve, disapprove, get_all_approved
@@ -13,7 +13,7 @@ BAALAJI_TG_USER_BOT = "```My Master hasn't approved you to PM.```"
 TG_COMPANION_USER_BOT = "```Wait for my masters response.\nDo not spam his pm if you do not want to get blocked.```"
 THETGBOT_USER_BOT_WARN_ZERO = "```Blocked! Thanks for the spam.```"
 THETGBOT_USER_BOT_NO_WARN = "\
-```Bleep blop! This is a client. Don't fret.\
+```Bleep blop! This is a bot. Don't fret.\
 \nMy master hasn't approved you to PM.\
 \nPlease wait for my master to look in, he mostly approves PMs.\
 \nAs far as I know, he doesn't usually approve retards though.\
@@ -104,20 +104,26 @@ async def approve_p_m(event):
         else:
             APPROVED_PMs += f"* [{a_user.chat_id}](tg://user?id={a_user.chat_id})\n"
     if len(APPROVED_PMs) > Config.MAX_MESSAGE_SIZE_LIMIT:
-        with io.BytesIO(str.encode(APPROVED_PMs)) as out_file:
-            out_file.name = "approved.pms.text"
-            await client.send_file(
-                event.chat_id,
-                out_file,
-                force_document=True,
-                allow_cache=False,
-                caption="Current Approved PMs",
-                reply_to=event
-            )
-            await event.delete()
+        out_file_name = "approved_pms.txt"
+        output_file_ref=None
+        with open(out_file_name,"w") as f:
+            f.write(APPROVED_PMs)
+            output_file_ref=f.name
+
+
+        await client.send_file(
+            event.chat_id,
+            output_file_ref,
+            force_document=True,
+            allow_cache=False,
+            caption="Current Approved PMs",
+            
+        )
+        await event.delete()
+
     else:
         await event.edit(APPROVED_PMs)
-
+        os.remove(output_file_ref)
 
 Config.HELPER.update({
     "pmpermit": "\
