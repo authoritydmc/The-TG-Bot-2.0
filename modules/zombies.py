@@ -127,3 +127,11 @@ async def rm_deletedacc(show):
             f"Cleaned **{del_u}** deleted account(s) !!\
             \nCHAT: {show.chat.title}(`{show.chat_id}`)")
 
+Config.HELPER.update({
+    "zombies": "\
+**Requested Module --> zombies**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.zombies to find accounts which are not active ```\
+\nUsage: use `.zombies clean` to clean such accounts\
+"
+})

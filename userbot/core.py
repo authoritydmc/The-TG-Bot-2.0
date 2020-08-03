@@ -125,7 +125,7 @@ async def help(event):
                 title = "\n"
             else:
                 title = new_title
-            msg += f"{title}~ {key}"
+            msg += f"{title} -> `{key}`"
             title = new_title
         msg += f"\n\nNumber of modules: **{modcount}**\nSend .help <module_name> to get help regarding a module."
         await event.edit(msg)
