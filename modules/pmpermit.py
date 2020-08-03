@@ -120,10 +120,11 @@ async def approve_p_m(event):
             
         )
         await event.delete()
+        os.remove(output_file_ref)
+
 
     else:
         await event.edit(APPROVED_PMs)
-        os.remove(output_file_ref)
 
 Config.HELPER.update({
     "pmpermit": "\
