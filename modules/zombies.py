@@ -2,16 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-"""Cmd= `.zombie`
-Usage: Searches for deleted accounts in a groups and channels.
-Use .zombies clean to remove deleted accounts from the groups and channels.
-\nPorted by ©[NIKITA](t.me/kirito6969) and ©[EYEPATCH](t.me/NeoMatrix90)"""
-
-from telethon import events
-
 from asyncio import sleep
-from os import remove
-
 from telethon.errors import (BadRequestError, ChatAdminRequiredError,
                              ImageProcessFailedError, PhotoCropSizeSmallError,
                              UserAdminInvalidError)
@@ -58,16 +49,16 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
 
 @client.on(register(pattern="zombies ?(.*)"))
-async def rm_deletedacc(show):
+async def handler(event):
     """ For .zombies command, list all the ghost/deleted/zombie accounts in a chat. """
 
-    con = show.pattern_match.group(1).lower()
+    con = event.pattern_match.group(1).lower()
     del_u = 0
-    del_status = "`No deleted accounts found, Group is clean`"
+    del_status = "`No deleted accounts found, this group is clean asf.`"
 
     if con != "clean":
-        await show.edit("`Searching for ghost/deleted/zombie accounts...`")
-        async for user in show.client.iter_participants(show.chat_id):
+        await event.edit("`Searching for ghost/deleted/zombie accounts...`")
+        async for user in event.client.iter_participants(event.chat_id):
 
             if user.deleted:
                 del_u += 1
@@ -75,63 +66,53 @@ async def rm_deletedacc(show):
         if del_u > 0:
             del_status = f"`Found` **{del_u}** `ghost/deleted/zombie account(s) in this group,\
             \nclean them by using .zombies clean`"
-        await show.edit(del_status)
+        await event.edit(del_status)
         return
 
     # Here laying the sanity check
-    chat = await show.get_chat()
+    chat = await event.get_chat()
     admin = chat.admin_rights
     creator = chat.creator
 
     # Well
     if not admin and not creator:
-        await show.edit("`I am not an admin here!`")
+        await event.edit("`I am not an admin here!`")
         return
 
-    await show.edit("`Deleting deleted accounts...\nOh I can do that?!?!`")
+    await event.edit("`Cleaning up this mess..`")
     del_u = 0
     del_a = 0
 
-    async for user in show.client.iter_participants(show.chat_id):
+    async for user in event.client.iter_participants(event.chat_id):
         if user.deleted:
             try:
-                await show.client(
-                    EditBannedRequest(show.chat_id, user.id, BANNED_RIGHTS))
+                await event.client(
+                    EditBannedRequest(event.chat_id, user.id, BANNED_RIGHTS))
             except ChatAdminRequiredError:
-                await show.edit("`I don't have ban rights in this group`")
+                await event.edit("`I don't have ban rights in this group!`")
                 return
             except UserAdminInvalidError:
                 del_u -= 1
                 del_a += 1
-            await show.client(
-                EditBannedRequest(show.chat_id, user.id, UNBAN_RIGHTS))
+            await event.client(
+                EditBannedRequest(event.chat_id, user.id, UNBAN_RIGHTS))
             del_u += 1
-
-
+            
     if del_u > 0:
         del_status = f"Cleaned **{del_u}** deleted account(s)"
-
     if del_a > 0:
         del_status = f"Cleaned **{del_u}** deleted account(s) \
-        \n**{del_a}** deleted admin accounts are not removed"
-
-
-    await show.edit(del_status)
+        \n**{del_a}** deleted admin account(s) could not be removed."
+        
+    await event.edit(del_status)
     await sleep(2)
-    await show.delete()
-
-
-    if Config.G_BAN_LOGGER_GROUP is not None:
-        await show.client.send_message(
-            Config.G_BAN_LOGGER_GROUP, "#CLEANUP\n"
-            f"Cleaned **{del_u}** deleted account(s) !!\
-            \nCHAT: {show.chat.title}(`{show.chat_id}`)")
+    await event.delete()
 
 Config.HELPER.update({
     "zombies": "\
-**Requested Module --> zombies**\
-\n\n**Detailed usage of fuction(s):**\
-\n\n```.zombies to find accounts which are not active ```\
-\nUsage: use `.zombies clean` to clean such accounts\
+```.zombies```\
+\nUsage: Search for deleted accounts in the current chat.\
+\n\n```.zombies clean```\
+\nUsage: Clean all zombie account from the current chat.\
 "
 })
