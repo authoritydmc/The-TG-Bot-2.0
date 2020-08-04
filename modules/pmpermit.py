@@ -21,13 +21,29 @@ THETGBOT_USER_BOT_NO_WARN = "\
 "
 
 
+
+@client.on(register(outgoing=True, func=lambda e: e.is_private))
+async def auto_approve(event):
+    #sanity check here
+    #if any outgoing text contain bot module invocator then do not autoapprove
+    #for eg if outgoing text has .xyz then due to . current chat wont be auto approved
+    if event.text[0]==Config.COMMAND_HANDLER[1]:
+        return False
+    reason = "auto_approve"
+    chat = await event.get_chat()
+    if Config.ANTI_PM_SPAM:
+        if not is_approved(chat.id):
+            approve(chat.id, reason)
+            logger.info("Auto approved user: " + str(chat.id))
+                  
+                  
 @client.on(register(incoming=True, func=lambda e: e.is_private))
-async def monito_p_m_s(event):
+async def monitorpms(event):
     sender = await event.get_sender()
     current_message_text = event.message.message.lower()
     if current_message_text == BAALAJI_TG_USER_BOT or \
             current_message_text == TG_COMPANION_USER_BOT or \
-            current_message_text == THETGBOT_USER_BOT_NO_WARN:
+            current_message_text == THETGBOT_USER_BOT_WARN_ZERO:
         # userbot's should not reply to other userbot's
         # https://core.telegram.org/bots/faq#why-doesn-39t-my-bot-see-messages-from-other-bots
         return False
@@ -58,7 +74,7 @@ async def monito_p_m_s(event):
 
 
 @client.on(register("approve ?(.*)"))
-async def approve_p_m(event):
+async def approve_pm(event):
     if event.fwd_from:
         return
     reason = event.pattern_match.group(1)
@@ -76,7 +92,6 @@ async def approve_p_m(event):
                 await asyncio.sleep(3)
                 await event.delete()
 
-
 @client.on(register("block ?(.*)"))
 async def approve_p_m(event):
     if event.fwd_from:
@@ -87,15 +102,33 @@ async def approve_p_m(event):
         if event.is_private:
             if is_approved(chat.id):
                 disapprove(chat.id)
-                await event.edit("Blocked PM.")
+            await event.edit("Blocked PM.")
+            await asyncio.sleep(3)
+            await client(functions.contacts.BlockRequest(chat.id))
+            logger.info("Blocked user: " + str(chat.id))
+
+
+@client.on(register("disapprove ?(.*)"))
+async def disapprove_pm(event):
+    if event.fwd_from:
+        return
+    reason = event.pattern_match.group(1)
+    chat = await event.get_chat()
+    if Config.ANTI_PM_SPAM:
+        if event.is_private:
+            if is_approved(chat.id):
+                disapprove(chat.id)
+                await event.edit("Disapproved PM.")
                 await asyncio.sleep(3)
-                await client(functions.contacts.BlockRequest(chat.id))
+                logger.info("Disapproved user: " + str(chat.id))
 
 
-@client.on(register("approvedpms"))
+
+@client.on(register("getpms"))
 async def approve_p_m(event):
     if event.fwd_from:
         return
+    await event.edit("Fetching all approved pm list..wait")
     approved_users = get_all_approved()
     APPROVED_PMs = "Current Approved PMs\n"
     for a_user in approved_users:
@@ -104,13 +137,12 @@ async def approve_p_m(event):
         else:
             APPROVED_PMs += f"* [{a_user.chat_id}](tg://user?id={a_user.chat_id})\n"
     if len(APPROVED_PMs) > Config.MAX_MESSAGE_SIZE_LIMIT:
+        # fixed by authoritydmc
         out_file_name = "approved_pms.txt"
         output_file_ref=None
         with open(out_file_name,"w") as f:
             f.write(APPROVED_PMs)
             output_file_ref=f.name
-
-
         await client.send_file(
             event.chat_id,
             output_file_ref,
@@ -121,8 +153,6 @@ async def approve_p_m(event):
         )
         await event.delete()
         os.remove(output_file_ref)
-
-
     else:
         await event.edit(APPROVED_PMs)
 
@@ -132,5 +162,9 @@ Config.HELPER.update({
 \nUsage: Approve a user in PMs.\
 \n\n```.block```\
 \nUsage: Block a user from your PMs.\
+\n\n```.disapprove```\
+\nUsage: Remove a user from your approved PMs list.\
+\n\n```.getpms```\
+\nUsage: Get approved PMs.\
 "
 })
