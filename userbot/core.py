@@ -73,6 +73,7 @@ async def install_module(event):
                 else:
                     client.remove_module(module.file.name[:-3])
                     os.remove(f"modules/" + str(module.file.name))
+                    os.remove(downloaded_file_name)
                     await event.edit("`Module already exists, overwriting..`")
                     asyncio.sleep(0.25)
             except Exception as e:  # pylint:disable=C0103,W0703
@@ -156,6 +157,7 @@ async def alive(event):
         force_document=False,
         allow_cache=False
     )
+    await event.delete()
 
 
 def get_size(bytes, suffix="B"):
